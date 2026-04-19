@@ -229,16 +229,25 @@ ul {
 }
 
 .logo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
     font-family: var(--font-heading);
-    font-size: 2rem;
+    font-size: 1.85rem;
     font-weight: 600;
     color: var(--primary-dark);
-    letter-spacing: 2px;
+    letter-spacing: 1px;
 }
 
-.logo span {
-    color: var(--gold);
+.logo img {
+    width: 48px;
+    height: auto;
+    display: block;
 }
+
+/* .logo span {
+    color: var(--gold);
+} */
 
 .nav-links {
     display: flex;
@@ -1621,7 +1630,7 @@ ul {
     }
     
     .rooms-grid {
-        grid-template-columns: repeat(2, 1fr) !important;
+        grid-template-columns: repeat(1, 1fr) !important;
     }
     
     .awards-grid {
