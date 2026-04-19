@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accommodation | Guestland Homestay</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">Guestland<span>.</span></a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="story.html">Our Story</a></li>
+                <li class="dropdown">
+                    <a href="accommodation.html" class="active">Accommodation</a>
+                    <div class="dropdown-content">
+                        <a href="#rooms">Rooms</a>
+                        <a href="#living">Living Area</a>
+                        <a href="#dining">Dining Area</a>
+                        <a href="#outdoor">Outdoor Area</a>
+                    </div>
+                </li>
+                <li><a href="amenities.html">Amenities</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="hero-bg">
+            <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?w=1920&h=800&fit=crop" alt="Accommodation">
+            <div class="hero-overlay"></div>
+        </div>
+        <div class="page-header-content">
+            <h1>Accommodation</h1>
+            <div class="breadcrumb">
+                <a href="index.html">Home</a>
+                <span>•</span>
+                <span>Accommodation</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Accommodation Navigation -->
+    <div class="accommodation-nav">
+        <div class="container">
+            <div class="accommodation-tabs">
+                <a href="#rooms" class="accommodation-tab active">Rooms</a>
+                <a href="#living" class="accommodation-tab">Living Area</a>
+                <a href="#dining" class="accommodation-tab">Dining Area</a>
+                <a href="#outdoor" class="accommodation-tab">Outdoor Area</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Rooms Section -->
+    <section id="rooms" class="section">
+        <div class="container">
+            <div class="section-header">
+                <span class="subtitle">Our Rooms</span>
+                <h2>Comfortable Stays Await</h2>
+                <div class="divider"></div>
+                <p style="max-width: 600px; margin: 20px auto 0;">Choose from our selection of beautifully appointed rooms, each designed for maximum comfort and relaxation.</p>
+            </div>
+            
+            <div class="rooms-grid" style="grid-template-columns: repeat(2, 1fr); gap: 40px;">
+                <!-- Double Room AC -->
+                <div class="room-card" style="display: flex; flex-direction: row;">
+                    <div class="room-card-image" style="flex: 1; height: auto; min-height: 350px;">
+                        <img src="https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=600&h=500&fit=crop" alt="Double Room AC">
+                        <span class="room-card-badge">Popular</span>
+                    </div>
+                    <div class="room-card-content" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
+                        <h4>Deluxe Double Room (AC)</h4>
+                        <p>Luxurious king-sized comfort with climate control, en-suite bathroom, and stunning garden views. Perfect for couples.</p>
+                        <div class="room-features">
+                            <span>King Bed</span>
+                            <span>Air Conditioned</span>
+                            <span>40 sqm</span>
+                            <span>Garden View</span>
+                            <span>En-suite</span>
+                            <span>Smart TV</span>
+                        </div>
+                        <div class="room-card-footer">
+                            <div class="room-price">$150 <span>/ night</span></div>
+                            <a href="contact.html" class="btn btn-primary">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Double Room Non-AC -->
+                <div class="room-card" style="display: flex; flex-direction: row;">
+                    <div class="room-card-image" style="flex: 1; height: auto; min-height: 350px;">
+                        <img src="https://images.unsplash.com/photo-1595576508898-0ad5c879a061?w=600&h=500&fit=crop" alt="Double Room Non-AC">
+                        <span class="room-card-badge">Best Value</span>
+                    </div>
+                    <div class="room-card-content" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
+                        <h4>Classic Double Room (Non-AC)</h4>
+                        <p>Traditional charm with natural ventilation, queen-sized bed, and a private balcony overlooking the garden.</p>
+                        <div class="room-features">
+                            <span>Queen Bed</span>
+                            <span>Ceiling Fan</span>
+                            <span>35 sqm</span>
+                            <span>Balcony</span>
+                            <span>En-suite</span>
+                            <span>WiFi</span>
+                        </div>
+                        <div class="room-card-footer">
+                            <div class="room-price">$100 <span>/ night</span></div>
+                            <a href="contact.html" class="btn btn-primary">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Single Room AC -->
+                <div class="room-card" style="display: flex; flex-direction: row;">
+                    <div class="room-card-image" style="flex: 1; height: auto; min-height: 350px;">
+                        <img src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=600&h=500&fit=crop" alt="Single Room AC">
+                    </div>
+                    <div class="room-card-content" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
+                        <h4>Superior Single Room (AC)</h4>
+                        <p>Perfect for solo travelers, featuring a comfortable single bed, work desk, and modern amenities with full climate control.</p>
+                        <div class="room-features">
+                            <span>Single Bed</span>
+                            <span>Air Conditioned</span>
+                            <span>25 sqm</span>
+                            <span>Work Desk</span>
+                            <span>En-suite</span>
+                            <span>Mini Fridge</span>
+                        </div>
+                        <div class="room-card-footer">
+                            <div class="room-price">$80 <span>/ night</span></div>
+                            <a href="contact.html" class="btn btn-primary">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Single Room Non-AC -->
+                <div class="room-card" style="display: flex; flex-direction: row;">
+                    <div class="room-card-image" style="flex: 1; height: auto; min-height: 350px;">
+                        <img src="https://images.unsplash.com/photo-1586105251261-72a756497a11?w=600&h=500&fit=crop" alt="Single Room Non-AC">
+                        <span class="room-card-badge">Budget Friendly</span>
+                    </div>
+                    <div class="room-card-content" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
+                        <h4>Cozy Single Room (Non-AC)</h4>
+                        <p>Charming and budget-friendly option with natural cross-ventilation, comfortable bedding, and all essential amenities.</p>
+                        <div class="room-features">
+                            <span>Single Bed</span>
+                            <span>Ceiling Fan</span>
+                            <span>20 sqm</span>
+                            <span>Window View</span>
+                            <span>Shared Bath</span>
+                            <span>WiFi</span>
+                        </div>
+                        <div class="room-card-footer">
+                            <div class="room-price">$50 <span>/ night</span></div>
+                            <a href="contact.html" class="btn btn-primary">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Living Area Section -->
+    <section id="living" class="section" style="background: var(--cream);">
+        <div class="container">
+            <div class="section-header">
+                <span class="subtitle">Common Spaces</span>
+                <h2>Living Areas</h2>
+                <div class="divider"></div>
+            </div>
+            
+            <div class="rooms-grid">
+                <!-- Communal Lounge -->
+                <div class="room-card">
+                    <div class="room-card-image">
+                        <img src="https://images.unsplash.com/photo-1598928506311-c55ez6e36fef?w=600&h=400&fit=crop" alt="Communal Lounge">
+                    </div>
+                    <div class="room-card-content">
+                        <h4>Communal Lounge</h4>
+                        <p>A welcoming space to relax, socialize, or enjoy quiet moments. Features comfortable seating, board games, and a cozy fireplace.</p>
+                        <div class="room-features">
+                            <span>Fireplace</span>
+                            <span>TV Area</span>
+                            <span>Board Games</span>
+                            <span>Tea Station</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Reading Corner -->
+                <div class="room-card">
+                    <div class="room-card-image">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=400&fit=crop" alt="Reading Corner">
+                    </div>
+                    <div class="room-card-content">
+                        <h4>Reading Corner</h4>
+                        <p>A peaceful retreat filled with books, comfortable armchairs, and natural light. Perfect for bookworms and contemplation.</p>
+                        <div class="room-features">
+                            <span>Library</span>
+                            <span>Natural Light</span>
+                            <span>Quiet Zone</span>
+                            <span>Coffee Available</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Reception -->
+                <div class="room-card">
+                    <div class="room-card-image">
+                        <img src="https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=600&h=400&fit=crop" alt="Reception">
+                    </div>
+                    <div class="room-card-content">
+                        <h4>Corner Reception</h4>
+                        <p>Our elegant reception area where our friendly staff welcomes you. Assistance available 24/7 for all your needs.</p>
+                        <div class="room-features">
+                            <span>24/7 Staff</span>
+                            <span>Concierge</span>
+                            <span>Tour Booking</span>
+                            <span>Information</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dining Area Section -->
+    <section id="dining" class="section">
+        <div class="container">
+            <div class="area-header">
+                <div class="area-header-image">
+                    <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&h=500&fit=crop" alt="Dining Area">
+                </div>
+                <div class="area-header-content">
+                    <span class="subtitle">Culinary Experiences</span>
+                    <h3>Dining Area</h3>
+                    <p>Our dining space is where culinary magic happens. Enjoy freshly prepared meals in an elegant yet comfortable setting.</p>
+                    <ul class="features-list" style="grid-template-columns: 1fr;">
+                        <li>Farm-to-table fresh ingredients</li>
+                        <li>Local and international cuisine</li>
+                        <li>Special dietary accommodations</li>
+                        <li>Breakfast included with room</li>
+                        <li>Room service available</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="rooms-grid" style="margin-top: 60px;">
+                <div class="room-card">
+                    <div class="room-card-image">
+                        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&h=400&fit=crop" alt="Communal Kitchen">
+                    </div>
+                    <div class="room-card-content">
+                        <h4>Communal Kitchen</h4>
+                        <p>A fully-equipped shared kitchen for guests who love to cook. Modern appliances and all essentials provided.</p>
+                        <div class="room-features">
+                            <span>Full Kitchen</span>
+                            <span>Modern Appliances</span>
+                            <span>Utensils Provided</span>
+                            <span>Pantry Basics</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="room-card">
+                    <div class="room-card-image">
+                        <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&h=400&fit=crop" alt="Main Dining">
+                    </div>
+                    <div class="room-card-content">
+                        <h4>Main Dining Hall</h4>
+                        <p>Elegant dining room with table service for breakfast, lunch, and dinner. Beautiful ambiance for memorable meals.</p>
+                        <div class="room-features">
+                            <span>Table Service</span>
+                            <span>All Meals</span>
+                            <span>Garden View</span>
+                            <span>Wine Selection</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="room-card">
+                    <div class="room-card-image">
+                        <img src="https://images.unsplash.com/photo-1559305616-3f99cd43e353?w=600&h=400&fit=crop" alt="Garden Dining">
+                    </div>
+                    <div class="room-card-content">
+                        <h4>Garden Café</h4>
+                        <p>Al fresco dining in our beautiful garden. Perfect for sunny breakfasts and romantic dinners under the stars.</p>
+                        <div class="room-features">
+                            <span>Outdoor Seating</span>
+                            <span>Garden Views</span>
+                            <span>Seasonal Menu</span>
+                            <span>Private Events</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Outdoor Area Section -->
+    <section id="outdoor" class="section" style="background: var(--cream);">
+        <div class="container">
+            <div class="section-header">
+                <span class="subtitle">Fresh Air & Views</span>
+                <h2>Outdoor Spaces</h2>
+                <div class="divider"></div>
+            </div>
+            
+            <div class="rooms-grid">
+                <!-- Patios -->
+                <div class="room-card">
+                    <div class="room-card-image">
+                        <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=600&h=400&fit=crop" alt="Patios">
+                    </div>
+                    <div class="room-card-content">
+                        <h4>Garden Patios</h4>
+                        <p>Serene outdoor seating areas surrounded by lush greenery. Perfect for morning coffee or evening relaxation.</p>
+                        <div class="room-features">
+                            <span>Comfortable Seating</span>
+                            <span>Garden Access</span>
+                            <span>Shade Covers</span>
+                            <span>Peaceful Setting</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Balcony -->
+                <div class="room-card">
+                    <div class="room-card-image">
+                        <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=600&h=400&fit=crop" alt="Balcony">
+                    </div>
+                    <div class="room-card-content">
+                        <h4>Private Balconies</h4>
+                        <p>Many of our rooms feature private balconies with stunning views. Perfect for watching sunsets.</p>
+                        <div class="room-features">
+                            <span>Room Feature</span>
+                            <span>Private Space</span>
+                            <span>Sunset Views</span>
+                            <span>Seating</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Rooftop -->
+                <div class="room-card">
+                    <div class="room-card-image">
+                        <img src="https://images.unsplash.com/photo-1559628233-100c798642d4?w=600&h=400&fit=crop" alt="Rooftop">
+                    </div>
+                    <div class="room-card-content">
+                        <h4>Rooftop Terrace</h4>
+                        <p>Our stunning rooftop terrace offers panoramic views, lounge seating, and a bar for evening cocktails.</p>
+                        <div class="room-features">
+                            <span>360° Views</span>
+                            <span>Lounge Area</span>
+                            <span>Bar Service</span>
+                            <span>Event Space</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <a href="index.html" class="logo">Guestland<span>.</span></a>
+                    <p>Experience the perfect blend of luxury and homely warmth at Guestland Homestay. Your comfort is our priority.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link">f</a>
+                        <a href="#" class="social-link">in</a>
+                        <a href="#" class="social-link">ig</a>
+                        <a href="#" class="social-link">tw</a>
+                    </div>
+                </div>
+                <div class="footer-links-col">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="story.html">Our Story</a></li>
+                        <li><a href="accommodation.html">Accommodation</a></li>
+                        <li><a href="amenities.html">Amenities</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links-col">
+                    <h4>Rooms</h4>
+                    <ul class="footer-links">
+                        <li><a href="#rooms">Double Room (AC)</a></li>
+                        <li><a href="#rooms">Double Room (Non-AC)</a></li>
+                        <li><a href="#rooms">Single Room (AC)</a></li>
+                        <li><a href="#rooms">Single Room (Non-AC)</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>Contact Us</h4>
+                    <p><span>📍</span> 123 Guestland Lane, Paradise Valley</p>
+                    <p><span>📞</span> +1 (555) 123-4567</p>
+                    <p><span>✉️</span> info@Guestlandhomestay.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Guestland Homestay. All rights reserved.</p>
+                <div class="footer-bottom-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
