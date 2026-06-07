@@ -210,7 +210,7 @@ ul {
     left: 0;
     right: 0;
     z-index: 1000;
-    padding: 20px 0;
+    padding: 10px 0;
     transition: var(--transition-fast);
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(20px);
@@ -230,25 +230,106 @@ ul {
 
 .logo {
     display: flex;
-    align-items: center;
+    align-items: flex-end;
     font-family: var(--font-heading);
     font-size: 1.85rem;
     font-weight: 600;
     color: var(--primary-dark);
     letter-spacing: 1px;
+    gap: 0;
 }
 
 .logo img {
-    width: 48px;
+    width: 76px;
     height: auto;
     display: block;
     transform: rotate(5deg);
     mix-blend-mode: multiply;
+    animation: logoLand 0.22s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
-/* .logo span {
-    color: var(--gold);
-} */
+/* Speed lines — trailing gradient, "speedy landing" concept */
+.logo-lines {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    justify-content: flex-end;
+    align-items: flex-end;
+    align-self: flex-end;
+    margin-bottom: 15px;
+}
+
+.logo-hline {
+    display: block;
+    width: 40px;
+    height: 1.5px;
+    background: linear-gradient(
+        to right,
+        transparent 0%,
+        rgba(180, 141, 173, 0.25) 30%,
+        rgba(180, 141, 173, 0.65) 65%,
+        var(--primary-dark) 100%
+    );
+    border-radius: 0 2px 2px 0;
+    transform-origin: left center;
+    animation: hlineRush 0.28s cubic-bezier(0.22, 1, 0.36, 1) 0s both;
+}
+
+.logo-hline:nth-child(2) {
+    width: 25px;
+    height: 2.5px;
+    background: linear-gradient(
+        to right,
+        transparent 0%,
+        rgba(180, 141, 173, 0.2) 25%,
+        rgba(180, 141, 173, 0.6) 60%,
+        var(--primary-dark) 100%
+    );
+    animation-name: hlineRush;
+    animation-delay: 0.05s;
+}
+
+.logo span {
+    animation: logoTextReveal 0.22s ease 0.2s both;
+    opacity: 0;
+}
+
+@keyframes logoLand {
+    from {
+        opacity: 0;
+        transform: translateY(-14px) rotate(5deg);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) rotate(5deg);
+    }
+}
+
+@keyframes hlineRush {
+    from {
+        transform: scaleX(0);
+        opacity: 0;
+    }
+    60% {
+        transform: scaleX(1.08);
+        opacity: 1;
+    }
+    to {
+        transform: scaleX(1);
+        opacity: 1;
+    }
+}
+
+@keyframes logoTextReveal {
+    from {
+        opacity: 0;
+        transform: translateX(-6px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
 
 .nav-links {
     display: flex;
@@ -370,7 +451,7 @@ ul {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: right center;
+    object-position: 65% center;
 }
 
 .hero-overlay {
@@ -1791,10 +1872,19 @@ ul {
         width: 100px;
         height: 100px;
         left: -10px;
+        padding: 6px;
     }
     
     .experience-badge .number {
-        font-size: 2rem;
+        font-size: 1.6rem;
+        line-height: 1;
+    }
+
+    .experience-badge .text {
+        font-size: 0.58rem;
+        letter-spacing: 0.5px;
+        text-align: center;
+        line-height: 1.3;
     }
     
     .contact-form-wrapper {
