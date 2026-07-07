@@ -1158,10 +1158,22 @@ ul {
 }
 
 .testimonial-author img {
+    display: block;
+    flex: 0 0 60px;
     width: 60px;
     height: 60px;
+    aspect-ratio: 1;
     border-radius: 50%;
     object-fit: cover;
+    overflow: hidden;
+}
+
+.testimonial-author img.avatar-valeria {
+    object-position: 50% 28%;
+}
+
+.testimonial-author img.avatar-eva {
+    object-position: 42% 24%;
 }
 
 .testimonial-author-info h5 {
@@ -1193,6 +1205,24 @@ ul {
     font-size: 1.1rem;
     line-height: 2;
     margin-bottom: 25px;
+    text-align: justify;
+    text-align-last: left;
+}
+
+.story-feature-image {
+    margin: 35px 0 40px;
+}
+
+.story-feature-image img {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    box-shadow: var(--shadow-lg);
+}
+
+.team-description {
+    text-align: justify;
+    text-align-last: left;
 }
 
 .timeline {
@@ -1337,7 +1367,9 @@ ul {
 }
 
 .award-card .year {
-    font-size: 0.85rem;
+    display: inline-block;
+    margin-top: 5px;
+    font-size: 1.15rem;
     color: var(--gold);
     font-weight: 600;
 }
