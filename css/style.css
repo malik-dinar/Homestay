@@ -867,6 +867,36 @@ ul {
     font-size: 0.75rem;
 }
 
+.shared-amenities {
+    margin-top: 60px;
+    padding: 42px;
+    background: var(--cream);
+    border: 1px solid var(--primary-light);
+    border-radius: 15px;
+    box-shadow: var(--shadow-sm);
+}
+
+.shared-amenities .subtitle {
+    display: block;
+    margin-bottom: 10px;
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--primary-dark);
+}
+
+.shared-amenities h3 {
+    margin-bottom: 24px;
+    color: var(--primary-dark);
+}
+
+.shared-amenities-list {
+    margin: 0;
+    grid-template-columns: repeat(3, 1fr);
+}
+
 /* ============================================
    FLIP CARDS (for Amenities)
    ============================================ */
@@ -1995,6 +2025,14 @@ ul {
     }
     
     .features-list {
+        grid-template-columns: 1fr;
+    }
+
+    .shared-amenities {
+        padding: 30px 22px;
+    }
+
+    .shared-amenities-list {
         grid-template-columns: 1fr;
     }
 }
