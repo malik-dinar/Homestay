@@ -18,7 +18,7 @@
                 <img src="images/home_stay_logo1.png" alt="Guestland Homestay logo">
                 <span>Guestland.</span>
             </a>
-            <ul class="nav-links">
+            <ul class="nav-links" id="primary-navigation">
                 <li><a href="index.html" class="active">Home</a></li>
                 <li><a href="story.html">Our Story</a></li>
                 <li class="dropdown">
@@ -35,11 +35,11 @@
                 <li><a href="attractions.html">Explore Fort Kochi</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
-            <div class="menu-toggle">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
+            <button class="menu-toggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="primary-navigation">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </button>
         </div>
     </nav>
 
@@ -285,11 +285,11 @@
                     <a href="index.html" class="logo">Guestland<span>.</span></a>
                     <p>Experience the perfect blend of luxury and homely warmth at Guestland Homestay. Your comfort is our priority.</p>
                     <div class="social-links footer-social-links" aria-label="Guestland links">
-                        <a href="#" class="social-link footer-social-link booking-link" aria-label="Book Guestland on Booking.com" title="Booking.com">
+                        <a href="https://www.booking.com/hotel/in/kovil-homes-guest-land.en-gb.html?aid=304142&label=gen173nr-10CAEoggI46AdIM1gEaGyIAQGYATO4ARfIAQzYAQPoAQH4AQGIAgGoAgG4Au7TtNIGwAIB0gIkYWEyZWE2YmQtNzgzYi00MWZiLWFjOGItNTFjMDk3MDYyNDdk2AIB4AIB&sid=e825ec350ecc7b436de0e7351ef931e3&dest_id=-2093645&dest_type=city&dist=0&group_adults=2&group_children=0&hapos=1&hpos=1&no_rooms=1&req_adults=2&req_children=0&room1=A%2CA&sb_price_type=total&sr_order=popularity&srepoch=1783441976&srpvid=a01074455c0806b8&type=total&ucfs=1&" class="social-link footer-social-link booking-link" target="_blank" rel="noopener noreferrer" aria-label="Book Guestland on Booking.com" title="Booking.com">
                             <span class="social-icon">B</span>
                             <span class="social-label">Booking</span>
                         </a>
-                        <a href="#" class="social-link footer-social-link instagram-link" aria-label="Follow Guestland on Instagram" title="Instagram">
+                        <a href="https://www.instagram.com/guestland_fortkochi/?__pwa=1" class="social-link footer-social-link instagram-link" target="_blank" rel="noopener noreferrer" aria-label="Follow Guestland on Instagram" title="Instagram">
                             <span class="social-icon">in</span>
                             <span class="social-label">Instagram</span>
                         </a>
@@ -335,5 +335,6 @@
             </div>
         </div>
     </footer>
+    <script src="js/navigation.js" defer></script>
 </body>
 </html>
