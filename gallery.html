@@ -45,15 +45,14 @@
 
     <!-- Page Header -->
     <section class="page-header">
-        <div class="hero-bg">
-            <img src="images/gallery first.webp" alt="Guestland exterior at night">
+        <div class="hero-bg gallery-hero-bg" aria-hidden="true">
             <div class="hero-overlay"></div>
         </div>
         <div class="page-header-content">
             <h1>Gallery</h1>
             <div class="breadcrumb">
                 <a href="index.html">Home</a>
-                <span>•</span>
+                <span aria-hidden="true">&bull;</span>
                 <span>Gallery</span>
             </div>
         </div>
@@ -68,200 +67,17 @@
                 <div class="divider"></div>
             </div>
 
-            <!-- Gallery Filters -->
-            <div class="gallery-filters">
-                <button class="gallery-filter active">All</button>
-                <button class="gallery-filter">Rooms</button>
-                <button class="gallery-filter">Dining</button>
-                <button class="gallery-filter">Garden</button>
-                <button class="gallery-filter">Views</button>
+            <p class="gallery-intro">From welcoming rooms and shared spaces to quiet balconies and Fort Kochi sunsets, discover every corner of Guestland.</p>
+
+            <div class="gallery-toolbar">
+                <div class="gallery-filters" id="gallery-filters" role="group" aria-label="Filter gallery by category"></div>
+                <p class="gallery-count" id="gallery-count" aria-live="polite"></p>
             </div>
 
-            <!-- Gallery Grid -->
-            <div class="gallery-grid">
-                <!-- Item 1 - Tall -->
-                <div class="gallery-item tall">
-                    <img src="images/optimized/room-vertical.jpg" alt="Superior room at Guestland" loading="lazy">
-                    <div class="gallery-zoom"></div>
-                    <div class="gallery-overlay">
-                        <h4>Superior Room</h4>
-                        <p>Quiet private comfort</p>
-                    </div>
-                </div>
-
-                <!-- Item 2 -->
-                <div class="gallery-item">
-                    <img src="images/optimized/double-room.jpg" alt="Deluxe double bedroom" loading="lazy">
-                    <div class="gallery-zoom"></div>
-                    <div class="gallery-overlay">
-                        <h4>Cozy Bedroom</h4>
-                        <p>Rest & relaxation</p>
-                    </div>
-                </div>
-
-                <!-- Item 3 -->
-                <div class="gallery-item">
-                    <img src="images/optimized/dining-area.jpg" alt="Guestland dining area" loading="lazy">
-                    <div class="gallery-zoom"></div>
-                    <div class="gallery-overlay">
-                        <h4>Dining Experience</h4>
-                        <p>Culinary delights</p>
-                    </div>
-                </div>
-
-                <!-- Item 4 - Wide -->
-                <div class="gallery-item wide">
-                    <img src="images/optimized/patio-plants.jpg" alt="Guestland garden patio" loading="lazy">
-                    <div class="gallery-zoom"></div>
-                    <div class="gallery-overlay">
-                        <h4>Garden Patio</h4>
-                        <p>Fresh air and greenery</p>
-                    </div>
-                </div>
-
-                <!-- Item 5 -->
-                <div class="gallery-item">
-                    <img src="images/optimized/single-ac-room.jpg" alt="Single AC room interior" loading="lazy">
-                    <div class="gallery-zoom"></div>
-                    <div class="gallery-overlay">
-                        <h4>Modern Interior</h4>
-                        <p>Contemporary design</p>
-                    </div>
-                </div>
-
-                <!-- Item 6 - Tall -->
-                <div class="gallery-item tall">
-                    <img src="images/optimized/balcony-vertical.jpg" alt="Guestland balcony view" loading="lazy">
-                    <div class="gallery-zoom"></div>
-                    <div class="gallery-overlay">
-                        <h4>Balcony Views</h4>
-                        <p>Scenic beauty</p>
-                    </div>
-                </div>
-
-                <!-- Item 7 -->
-                <div class="gallery-item">
-                    <img src="images/optimized/rooftop-terrace.jpg" alt="Rooftop terrace" loading="lazy">
-                    <div class="gallery-zoom"></div>
-                    <div class="gallery-overlay">
-                        <h4>Rooftop Terrace</h4>
-                        <p>Neighborhood views</p>
-                    </div>
-                </div>
-
-                <!-- Item 8 -->
-                <div class="gallery-item">
-                    <img src="images/optimized/main-dining.jpg" alt="Main dining space" loading="lazy">
-                    <div class="gallery-zoom"></div>
-                    <div class="gallery-overlay">
-                        <h4>Main Dining</h4>
-                        <p>Home-style meals</p>
-                    </div>
-                </div>
-
-                <!-- Item 9 -->
-                <div class="gallery-item">
-                    <img src="images/optimized/single-non-ac-room.jpg" alt="Cozy single non AC room" loading="lazy">
-                    <div class="gallery-zoom"></div>
-                    <div class="gallery-overlay">
-                        <h4>Classic Room</h4>
-                        <p>Timeless elegance</p>
-                    </div>
-                </div>
-
-                <!-- Item 10 - Wide -->
-                <div class="gallery-item wide">
-                    <img src="images/optimized/communal-lounge.jpg" alt="Communal lounge" loading="lazy">
-                    <div class="gallery-zoom"></div>
-                    <div class="gallery-overlay">
-                        <h4>Communal Lounge</h4>
-                        <p>Slow conversations</p>
-                    </div>
-                </div>
-
-                <!-- Item 11 -->
-                <div class="gallery-item">
-                    <img src="images/optimized/reception-corner.jpg" alt="Reception corner" loading="lazy">
-                    <div class="gallery-zoom"></div>
-                    <div class="gallery-overlay">
-                        <h4>Reception Corner</h4>
-                        <p>A warm welcome</p>
-                    </div>
-                </div>
-
-                <!-- Item 12 -->
-                <div class="gallery-item">
-                    <img src="images/optimized/garden-patio.jpg" alt="Outdoor patio dining" loading="lazy">
-                    <div class="gallery-zoom"></div>
-                    <div class="gallery-overlay">
-                        <h4>Patio Dining</h4>
-                        <p>Breakfast outside</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Video Section -->
-    <section class="section" style="background: var(--white);">
-        <div class="container">
-            <div class="section-header">
-                <span class="subtitle">Virtual Tour</span>
-                <h2>Experience Guestland</h2>
-                <div class="divider"></div>
-            </div>
-            
-            <div style="position: relative; height: 500px; background: var(--primary-lighter); border-radius: 20px; overflow: hidden; display: flex; align-items: center; justify-content: center;">
-                <img src="images/optimized/front-view.jpg" alt="Guestland exterior video thumbnail" style="width: 100%; height: 100%; object-fit: cover;" loading="lazy">
-                <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.4); display: flex; align-items: center; justify-content: center;">
-                    <div style="width: 100px; height: 100px; background: var(--white); border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: var(--transition-fast);" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
-                        <span style="font-size: 2rem; margin-left: 5px;">▶</span>
-                    </div>
-                </div>
-            </div>
-            <p style="text-align: center; margin-top: 20px; font-style: italic; color: var(--text-light);">Click to watch our virtual tour video</p>
-        </div>
-    </section>
-
-    <!-- Instagram Feed Placeholder -->
-    <section class="section" style="background: var(--cream);">
-        <div class="container">
-            <div class="section-header">
-                <span class="subtitle">@GuestlandHomestay</span>
-                <h2>Follow Us on Instagram</h2>
-                <div class="divider"></div>
-            </div>
-            
-            <div style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 15px;">
-                <div class="gallery-item" style="height: 200px;">
-                    <img src="images/optimized/decor.jpg" alt="Guestland decor" loading="lazy">
-                    <div class="gallery-zoom"></div>
-                </div>
-                <div class="gallery-item" style="height: 200px;">
-                    <img src="images/optimized/reading-area.jpg" alt="Guestland reading area" loading="lazy">
-                    <div class="gallery-zoom"></div>
-                </div>
-                <div class="gallery-item" style="height: 200px;">
-                    <img src="images/optimized/communal-kitchen.jpg" alt="Guestland kitchen" loading="lazy">
-                    <div class="gallery-zoom"></div>
-                </div>
-                <div class="gallery-item" style="height: 200px;">
-                    <img src="images/optimized/decor-awards.jpg" alt="Guestland decor and awards" loading="lazy">
-                    <div class="gallery-zoom"></div>
-                </div>
-                <div class="gallery-item" style="height: 200px;">
-                    <img src="images/optimized/plants.jpg" alt="Guestland plants" loading="lazy">
-                    <div class="gallery-zoom"></div>
-                </div>
-                <div class="gallery-item" style="height: 200px;">
-                    <img src="images/optimized/clock.jpg" alt="Guestland wall clock detail" loading="lazy">
-                    <div class="gallery-zoom"></div>
-                </div>
-            </div>
-            
-            <div style="text-align: center; margin-top: 40px;">
-                <a href="#" class="btn btn-outline">Follow @GuestlandHomestay</a>
-            </div>
+            <div class="gallery-grid" id="gallery-grid" aria-label="Guestland photo gallery" aria-busy="true"></div>
+            <noscript>
+                <p class="gallery-noscript">Please enable JavaScript to explore the complete Guestland gallery.</p>
+            </noscript>
         </div>
     </section>
 
@@ -323,6 +139,7 @@
             </div>
         </div>
     </footer>
+    <script src="js/gallery.js" defer></script>
     <script src="js/navigation.js" defer></script>
 </body>
 </html>
