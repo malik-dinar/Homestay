@@ -2905,7 +2905,7 @@ body.nav-open::before {
     /* Keep the complete guest photo visible on narrow screens. The carousel's
        fixed card proportions otherwise crop tall portraits and wide group shots. */
     .guest-memory-card.is-loaded .guest-memory-media {
-        background: #3d303b;
+        background: var(--primary);
     }
 
     .guest-memory-card img,
