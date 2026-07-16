@@ -751,6 +751,10 @@ body.nav-open::before {
     object-position: 65% 65%;
 }
 
+.page-header .gallery-image-bg img {
+    object-position: center 20%;
+}
+
 .page-header .hero-overlay {
     background: linear-gradient(135deg, 
         rgba(64, 40, 58, 0.55) 0%,
@@ -995,15 +999,13 @@ body.nav-open::before {
 }
 
 .enhance-gap-image {
-    height: 270px;
     overflow: hidden;
     border-radius: 8px;
 }
 
 .enhance-gap-image img {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
+    height: auto;
     display: block;
     transition: var(--transition-slow);
 }
@@ -2204,6 +2206,11 @@ body.nav-open::before {
     color: var(--primary-dark);
 }
 
+.area-header-content .culinary-subtitle {
+    font-family: var(--font-subheading);
+    color: var(--primary);
+}
+
 /* ============================================
    CONTACT SECTION
    ============================================ */
@@ -2224,15 +2231,14 @@ body.nav-open::before {
 
 .attractions-grid {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    align-items: stretch;
-    gap: 32px;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    align-items: start;
+    gap: 24px;
 }
 
 .attraction-card {
     display: flex;
     flex-direction: column;
-    height: 100%;
     overflow: hidden;
     background: var(--white);
     border-radius: 15px;
@@ -2944,6 +2950,10 @@ body.nav-open::before {
 }
 
 @media (max-width: 992px) {
+    .attractions-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
     .welcome-grid {
         grid-template-columns: 1fr;
         gap: 60px;

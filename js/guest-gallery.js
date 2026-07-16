@@ -1,7 +1,9 @@
 (function () {
     'use strict';
 
-    var photos = window.GuestlandGuestPhotos || [];
+    var photos = (window.GuestlandGuestPhotos || []).filter(function (photo) {
+        return photo.src !== 'images/guest-gallery/guest-2d1486e1f348.jpg';
+    });
     var shell = document.getElementById('guest-carousel-shell');
     var carousel = document.getElementById('guest-carousel');
     var previousButton = document.getElementById('guest-carousel-prev');
