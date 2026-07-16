@@ -21,7 +21,9 @@
     var cards = [];
     var activeIndex = 0;
     var autoPlayTimer = null;
+    var programmaticScrollTimer = null;
     var scrollFrame = null;
+    var autoPlayDelay = 3000;
     var reduceMotionQuery = window.matchMedia
         ? window.matchMedia('(prefers-reduced-motion: reduce)')
         : { matches: false };
@@ -165,6 +167,14 @@
         var card = cards[activeIndex];
         var left = card.offsetLeft - ((carousel.clientWidth - card.offsetWidth) / 2);
 
+        // A programmatic scroll can fire several scroll events. Keep those
+        // events from replacing the intended slide number with an in-between
+        // card, especially when the carousel jumps from the end back to 1.
+        window.clearTimeout(programmaticScrollTimer);
+        programmaticScrollTimer = window.setTimeout(function () {
+            programmaticScrollTimer = null;
+        }, behavior === 'smooth' ? 800 : 100);
+
         carousel.scrollTo({
             left: Math.max(0, left),
             behavior: behavior || 'smooth'
@@ -210,7 +220,7 @@
 
         autoPlayTimer = window.setInterval(function () {
             step(1, false);
-        }, 1000);
+        }, autoPlayDelay);
     }
 
     function resetAutoPlay() {
@@ -260,7 +270,7 @@
     });
 
     carousel.addEventListener('scroll', function () {
-        if (scrollFrame) {
+        if (scrollFrame || programmaticScrollTimer) {
             return;
         }
 
