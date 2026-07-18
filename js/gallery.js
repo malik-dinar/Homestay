@@ -1,16 +1,32 @@
 (function () {
     'use strict';
 
-    var categories = [
-        { id: 'exterior', label: 'Exterior' },
-        { id: 'rooms', label: 'Rooms' },
-        { id: 'bathrooms', label: 'Bathrooms' },
-        { id: 'common-areas', label: 'Common Areas' },
-        { id: 'dining', label: 'Dining' },
-        { id: 'kitchen', label: 'Kitchen' },
-        { id: 'outdoor-spaces', label: 'Outdoor Spaces' },
-        { id: 'views', label: 'Views & Surroundings' },
-        { id: 'details', label: 'Decor & Details' }
+    var categoryLabelAliases = {
+        'room-deluxe-double-ac': 'Deluxe Double Room (AC)',
+        'room-superior-single-ac': 'Superior Single Room (AC)',
+        'room-cozy-single-non-ac': 'Cozy Single Room (Non-AC)',
+        exterior: 'Exterior',
+        bathrooms: 'Bathrooms',
+        'common-areas': 'Common Areas',
+        dining: 'Dining',
+        kitchen: 'Kitchen',
+        'outdoor-spaces': 'Outdoor Spaces',
+        views: 'Views & Surroundings',
+        details: 'Decor & Details'
+    };
+
+    var categoryPriority = [
+        'room-deluxe-double-ac',
+        'room-superior-single-ac',
+        'room-cozy-single-non-ac',
+        'exterior',
+        'bathrooms',
+        'common-areas',
+        'dining',
+        'kitchen',
+        'outdoor-spaces',
+        'views',
+        'details'
     ];
 
     var galleryImages = [
@@ -443,25 +459,129 @@
     var filterContainer = document.getElementById('gallery-filters');
     var galleryGrid = document.getElementById('gallery-grid');
     var galleryCount = document.getElementById('gallery-count');
+    var galleryBack = document.getElementById('gallery-back');
+    var galleryViewTitle = document.getElementById('gallery-view-title');
+    var galleryToolbar = document.querySelector('.gallery-toolbar');
 
-    if (!filterContainer || !galleryGrid || !galleryCount) {
+    if (!filterContainer || !galleryGrid || !galleryCount || !galleryBack || !galleryViewTitle || !galleryToolbar) {
         return;
     }
 
-    var categoryLabels = {};
-    var imageSources = {};
     var activeCategory = 'all';
     var filterTimer = null;
     var filterSequence = 0;
+    var imageSources = {};
+    var categoryLookup = {};
+    var allFilterButton = null;
+    var lastCategoryTrigger = null;
     var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    categories.forEach(function (category) {
-        categoryLabels[category.id] = category.label;
+    function naturalCompare(left, right) {
+        return left.localeCompare(right, undefined, { numeric: true, sensitivity: 'base' });
+    }
+
+    function slugify(value) {
+        return value
+            .toLowerCase()
+            .replace(/[^a-z0-9]+/g, '-')
+            .replace(/^-+|-+$/g, '');
+    }
+
+    function formatRoomLabel(value) {
+        var label = value
+            .replace(/[_-]+/g, ' ')
+            .replace(/\s+/g, ' ')
+            .trim()
+            .replace(/\b\w/g, function (letter) { return letter.toUpperCase(); });
+
+        return label
+            .replace(/\bAc\b/g, 'AC')
+            .replace(/\bNon AC\b/g, 'Non-AC');
+    }
+
+    function removeImageExtensions(value) {
+        var stem = value;
+
+        while (/\.(?:avif|gif|jpe?g|png|webp)$/i.test(stem)) {
+            stem = stem.replace(/\.(?:avif|gif|jpe?g|png|webp)$/i, '');
+        }
+
+        return stem;
+    }
+
+    function getRoomCategory(path) {
+        var relativePath = path.replace(/^images\/rooms\//i, '');
+        var pathParts = relativePath.split('/');
+        var fileName = pathParts.pop();
+        var categoryName;
+
+        if (pathParts.length) {
+            categoryName = pathParts[0];
+        } else {
+            categoryName = removeImageExtensions(fileName)
+                .replace(/\s*(?:\(\s*\d+\s*\)|[-_ ]+\d+)\s*$/, '');
+        }
+
+        categoryName = categoryName.replace(/[_-]+/g, ' ').replace(/\s+/g, ' ').trim();
+        var normalizedName = categoryName.toLowerCase();
+
+        if (/^deluxe double (?:ac room|room ac)$/.test(normalizedName)) {
+            return { id: 'room-deluxe-double-ac', label: categoryLabelAliases['room-deluxe-double-ac'] };
+        }
+
+        if (/^(?:superior )?single (?:ac room|room ac)$/.test(normalizedName)) {
+            return { id: 'room-superior-single-ac', label: categoryLabelAliases['room-superior-single-ac'] };
+        }
+
+        if (/^(?:cozy )?single (?:non ac room|room non ac)$/.test(normalizedName)) {
+            return { id: 'room-cozy-single-non-ac', label: categoryLabelAliases['room-cozy-single-non-ac'] };
+        }
+
+        var categoryId = 'room-' + slugify(normalizedName || 'uncategorized');
+        var categoryLabel = formatRoomLabel(categoryName || 'Room');
+        categoryLabelAliases[categoryId] = categoryLabel;
+
+        return { id: categoryId, label: categoryLabel };
+    }
+
+    var roomPhotoPaths = Array.isArray(window.GuestlandRoomPhotos)
+        ? window.GuestlandRoomPhotos.slice().sort(naturalCompare)
+        : [];
+
+    // The generated room collection is authoritative; legacy room records remain a no-manifest fallback.
+    if (roomPhotoPaths.length) {
+        galleryImages = galleryImages.filter(function (image) {
+            return image.category !== 'rooms';
+        });
+    }
+
+    galleryImages.forEach(function (image, index) {
+        image.src = 'images/gallery/' + image.src;
+        image.sourceType = 'legacy';
+        image.sourceIndex = index;
+
+        if (image.category === 'rooms') {
+            image.category = /single\s+non\s+ac\s+room/i.test(image.src)
+                ? 'room-cozy-single-non-ac'
+                : 'room-deluxe-double-ac';
+        }
+    });
+
+    roomPhotoPaths.forEach(function (path, index) {
+        var roomCategory = getRoomCategory(path);
+
+        galleryImages.push({
+            src: path,
+            category: roomCategory.id,
+            alt: roomCategory.label + ' at Guestland Homestay.',
+            sourceType: 'room',
+            sourceIndex: index
+        });
     });
 
     galleryImages.forEach(function (image) {
-        if (!categoryLabels[image.category]) {
-            throw new Error('Unknown gallery category: ' + image.category);
+        if (!categoryLabelAliases[image.category]) {
+            categoryLabelAliases[image.category] = formatRoomLabel(image.category);
         }
 
         if (imageSources[image.src]) {
@@ -469,6 +589,60 @@
         }
 
         imageSources[image.src] = true;
+
+        if (!categoryLookup[image.category]) {
+            categoryLookup[image.category] = {
+                id: image.category,
+                label: categoryLabelAliases[image.category],
+                images: []
+            };
+        }
+
+        categoryLookup[image.category].images.push(image);
+    });
+
+    var categories = Object.keys(categoryLookup).map(function (categoryId) {
+        var category = categoryLookup[categoryId];
+
+        category.images.sort(function (left, right) {
+            if (left.sourceType !== right.sourceType) {
+                return left.sourceType === 'room' ? -1 : 1;
+            }
+
+            if (left.sourceType === 'room') {
+                return naturalCompare(left.src, right.src);
+            }
+
+            return left.sourceIndex - right.sourceIndex;
+        });
+
+        category.cover = category.images[0];
+
+        category.images.forEach(function (image, index) {
+            if (image.sourceType === 'room') {
+                image.alt = 'View of the ' + category.label + ' at Guestland Homestay, photo ' + (index + 1) + ' of ' + category.images.length + '.';
+            }
+        });
+
+        return category;
+    }).sort(function (left, right) {
+        var leftPriority = categoryPriority.indexOf(left.id);
+        var rightPriority = categoryPriority.indexOf(right.id);
+
+        leftPriority = leftPriority === -1
+            ? (left.id.indexOf('room-') === 0 ? 2.5 : categoryPriority.length)
+            : leftPriority;
+        rightPriority = rightPriority === -1
+            ? (right.id.indexOf('room-') === 0 ? 2.5 : categoryPriority.length)
+            : rightPriority;
+
+        return leftPriority === rightPriority
+            ? naturalCompare(left.label, right.label)
+            : leftPriority - rightPriority;
+    });
+
+    categories.forEach(function (category) {
+        categoryLookup[category.id] = category;
     });
 
     function createFilterButton(category, label) {
@@ -485,7 +659,8 @@
         }
 
         button.addEventListener('click', function () {
-            filterGallery(category);
+            lastCategoryTrigger = null;
+            filterGallery(category, false);
         });
 
         return button;
@@ -493,7 +668,8 @@
 
     function renderFilters() {
         var fragment = document.createDocumentFragment();
-        fragment.appendChild(createFilterButton('all', 'All'));
+        allFilterButton = createFilterButton('all', 'All');
+        fragment.appendChild(allFilterButton);
 
         categories.forEach(function (category) {
             fragment.appendChild(createFilterButton(category.id, category.label));
@@ -502,88 +678,115 @@
         filterContainer.appendChild(fragment);
     }
 
-    function createGalleryCard(image, index) {
+    function hydrateCard(card, visibleIndex, loadEagerly) {
+        var photo = card.querySelector('img');
+
+        if (!photo || photo.getAttribute('src')) {
+            return;
+        }
+
+        photo.loading = loadEagerly && visibleIndex < 4 ? 'eager' : 'lazy';
+        photo.src = photo.dataset.src;
+    }
+
+    function createCategoryAction(category) {
+        var action = document.createElement('button');
+        var photoCount = document.createElement('span');
+        var name = document.createElement('span');
+        var callToAction = document.createElement('span');
+        var arrow = document.createElement('span');
+
+        action.type = 'button';
+        action.className = 'gallery-category-action';
+
+        photoCount.className = 'gallery-category-count';
+        photoCount.textContent = category.images.length + (category.images.length === 1 ? ' photo' : ' photos');
+
+        name.className = 'gallery-category-name';
+        name.textContent = category.label;
+
+        callToAction.className = 'gallery-category-cta';
+        callToAction.textContent = 'See More';
+
+        arrow.className = 'gallery-category-arrow';
+        arrow.setAttribute('aria-hidden', 'true');
+        arrow.textContent = '\u2192';
+        callToAction.appendChild(arrow);
+
+        action.appendChild(photoCount);
+        action.appendChild(name);
+        action.appendChild(callToAction);
+
+        action.addEventListener('click', function () {
+            lastCategoryTrigger = action;
+            filterGallery(category.id, true);
+
+            if (typeof galleryBack.focus === 'function') {
+                galleryBack.focus({ preventScroll: true });
+            }
+        });
+
+        return action;
+    }
+
+    function createGalleryCard(image, category, coverIndex) {
         var card = document.createElement('figure');
         var media = document.createElement('div');
         var photo = document.createElement('img');
-        var caption = document.createElement('figcaption');
-        var category = document.createElement('span');
-        var title = document.createElement('h3');
+        var isCover = image === category.cover;
 
         card.className = 'gallery-card';
-        card.dataset.category = image.category;
-        card.dataset.ratio = image.height / image.width;
+        card.dataset.category = category.id;
+        card.dataset.cover = isCover ? 'true' : 'false';
+        card.hidden = !isCover;
 
         media.className = 'gallery-card-media';
 
         photo.alt = image.alt;
-        photo.width = image.width;
-        photo.height = image.height;
         photo.decoding = 'async';
-        photo.loading = index < 4 ? 'eager' : 'lazy';
+        photo.dataset.src = image.src;
 
-        if (index === 0) {
-            photo.setAttribute('fetchpriority', 'high');
+        if (image.width && image.height) {
+            photo.width = image.width;
+            photo.height = image.height;
         }
 
-        photo.src = 'images/gallery/' + image.src;
-
-        caption.className = 'gallery-caption';
-        category.className = 'gallery-caption-category';
-        category.textContent = categoryLabels[image.category];
-        title.className = 'gallery-caption-title';
-        title.textContent = image.title;
-
-        caption.appendChild(category);
-        caption.appendChild(title);
         media.appendChild(photo);
-        media.appendChild(caption);
+
+        if (isCover) {
+            media.appendChild(createCategoryAction(category));
+        }
+
         card.appendChild(media);
+
+        if (isCover) {
+            hydrateCard(card, coverIndex, false);
+        }
 
         return card;
     }
 
     function renderGallery() {
         var fragment = document.createDocumentFragment();
+        var coverIndex = 0;
 
-        galleryImages.forEach(function (image, index) {
-            fragment.appendChild(createGalleryCard(image, index));
+        categories.forEach(function (category) {
+            category.images.forEach(function (image) {
+                var isCover = image === category.cover;
+                fragment.appendChild(createGalleryCard(image, category, coverIndex));
+
+                if (isCover) {
+                    coverIndex += 1;
+                }
+            });
         });
 
         galleryGrid.appendChild(fragment);
         updateCount('all');
 
         window.requestAnimationFrame(function () {
-            sizeGalleryCards();
             galleryGrid.classList.add('is-ready');
             galleryGrid.setAttribute('aria-busy', 'false');
-        });
-    }
-
-    function sizeGalleryCards() {
-        var styles = window.getComputedStyle(galleryGrid);
-        var rowHeight = parseFloat(styles.gridAutoRows);
-        var rowGap = parseFloat(styles.rowGap);
-
-        if (!rowHeight || Number.isNaN(rowHeight)) {
-            return;
-        }
-
-        Array.prototype.forEach.call(galleryGrid.children, function (card) {
-            if (card.hidden) {
-                return;
-            }
-
-            var width = card.getBoundingClientRect().width;
-
-            if (!width) {
-                return;
-            }
-
-            var height = Math.round(width * parseFloat(card.dataset.ratio));
-            var rowSpan = Math.ceil((height + rowGap) / (rowHeight + rowGap));
-            card.style.height = height + 'px';
-            card.style.gridRowEnd = 'span ' + rowSpan;
         });
     }
 
@@ -592,20 +795,48 @@
             var isActive = button.dataset.category === category;
             button.classList.toggle('active', isActive);
             button.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+
+            if (isActive && filterContainer.scrollWidth > filterContainer.clientWidth) {
+                button.scrollIntoView({
+                    behavior: reduceMotion ? 'auto' : 'smooth',
+                    block: 'nearest',
+                    inline: 'center'
+                });
+            }
         });
     }
 
     function updateCount(category) {
-        var count = category === 'all'
-            ? galleryImages.length
-            : galleryImages.filter(function (image) { return image.category === category; }).length;
+        if (category === 'all') {
+            galleryCount.textContent = categories.length + (categories.length === 1 ? ' collection' : ' collections');
+            return;
+        }
 
-        galleryCount.textContent = category === 'all'
-            ? count + ' photographs'
-            : count + ' of ' + galleryImages.length + ' photographs';
+        var photoCount = categoryLookup[category].images.length;
+        galleryCount.textContent = photoCount + (photoCount === 1 ? ' photograph' : ' photographs');
     }
 
-    function finishFilter(cardsToHide, cardsToShow, sequence) {
+    function updateView(category) {
+        var isOverview = category === 'all';
+        galleryGrid.dataset.view = isOverview ? 'overview' : 'category';
+        galleryBack.hidden = isOverview;
+        galleryViewTitle.textContent = isOverview ? 'Browse by space' : categoryLookup[category].label;
+
+        Array.prototype.forEach.call(galleryGrid.querySelectorAll('.gallery-category-action'), function (action) {
+            action.hidden = !isOverview;
+        });
+    }
+
+    function scrollToGallery() {
+        window.requestAnimationFrame(function () {
+            galleryToolbar.scrollIntoView({
+                behavior: reduceMotion ? 'auto' : 'smooth',
+                block: 'start'
+            });
+        });
+    }
+
+    function finishFilter(cardsToHide, cardsToShow, sequence, onComplete) {
         cardsToHide.forEach(function (card) {
             card.hidden = true;
             card.classList.remove('is-leaving');
@@ -616,8 +847,6 @@
             card.classList.add('is-entering');
         });
 
-        sizeGalleryCards();
-
         window.requestAnimationFrame(function () {
             window.requestAnimationFrame(function () {
                 cardsToShow.forEach(function (card) {
@@ -626,13 +855,25 @@
 
                 if (sequence === filterSequence) {
                     galleryGrid.setAttribute('aria-busy', 'false');
+
+                    if (typeof onComplete === 'function') {
+                        onComplete();
+                    }
                 }
             });
         });
     }
 
-    function filterGallery(category) {
-        if (category === activeCategory || (category !== 'all' && !categoryLabels[category])) {
+    function filterGallery(category, shouldScroll, onComplete) {
+        if (category === activeCategory || (category !== 'all' && !categoryLookup[category])) {
+            if (shouldScroll) {
+                scrollToGallery();
+            }
+
+            if (typeof onComplete === 'function') {
+                window.requestAnimationFrame(onComplete);
+            }
+
             return;
         }
 
@@ -643,13 +884,16 @@
         galleryGrid.setAttribute('aria-busy', 'true');
         updateFilterButtons(category);
         updateCount(category);
+        updateView(category);
 
         var cardsToHide = [];
         var cardsToShow = [];
 
         Array.prototype.forEach.call(galleryGrid.children, function (card) {
             card.classList.remove('is-leaving', 'is-entering');
-            var shouldShow = category === 'all' || card.dataset.category === category;
+            var shouldShow = category === 'all'
+                ? card.dataset.cover === 'true'
+                : card.dataset.category === category;
 
             if (shouldShow && card.hidden) {
                 cardsToShow.push(card);
@@ -658,8 +902,16 @@
             }
         });
 
+        cardsToShow.forEach(function (card, index) {
+            hydrateCard(card, index, category !== 'all');
+        });
+
+        if (shouldScroll) {
+            scrollToGallery();
+        }
+
         if (reduceMotion || cardsToHide.length === 0) {
-            finishFilter(cardsToHide, cardsToShow, sequence);
+            finishFilter(cardsToHide, cardsToShow, sequence, onComplete);
             return;
         }
 
@@ -668,35 +920,32 @@
         });
 
         filterTimer = window.setTimeout(function () {
-            finishFilter(cardsToHide, cardsToShow, sequence);
+            finishFilter(cardsToHide, cardsToShow, sequence, onComplete);
         }, 220);
     }
 
-    function observeGalleryWidth() {
-        var previousWidth = 0;
+    galleryBack.addEventListener('click', function () {
+        var returnTarget = lastCategoryTrigger;
 
-        if ('ResizeObserver' in window) {
-            var observer = new ResizeObserver(function (entries) {
-                var width = entries[0].contentRect.width;
-
-                if (Math.abs(width - previousWidth) > 1) {
-                    previousWidth = width;
-                    window.requestAnimationFrame(sizeGalleryCards);
-                }
+        if (returnTarget && typeof returnTarget.focus === 'function') {
+            filterGallery('all', false, function () {
+                returnTarget.focus({ preventScroll: true });
+                returnTarget.scrollIntoView({
+                    behavior: reduceMotion ? 'auto' : 'smooth',
+                    block: 'center'
+                });
             });
+        } else {
+            filterGallery('all', true);
 
-            observer.observe(galleryGrid);
-            return;
+            if (allFilterButton && typeof allFilterButton.focus === 'function') {
+                allFilterButton.focus({ preventScroll: true });
+            }
         }
 
-        var resizeTimer = null;
-        window.addEventListener('resize', function () {
-            window.clearTimeout(resizeTimer);
-            resizeTimer = window.setTimeout(sizeGalleryCards, 100);
-        });
-    }
+        lastCategoryTrigger = null;
+    });
 
     renderFilters();
     renderGallery();
-    observeGalleryWidth();
 }());

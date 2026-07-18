@@ -25,6 +25,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v7
 
+      - name: Build room gallery manifest
+        shell: pwsh
+        run: ./tools/build-room-gallery.ps1
+
       - name: Setup Pages
         uses: actions/configure-pages@v6
 

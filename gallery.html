@@ -68,14 +68,21 @@
                 <div class="divider"></div>
             </div>
 
-            <p class="gallery-intro">From welcoming rooms and shared spaces to quiet balconies and Fort Kochi sunsets, discover every corner of Guestland.</p>
+            <p class="gallery-intro">Choose a space to explore its complete collection, from welcoming rooms and shared areas to quiet balconies and Fort Kochi sunsets.</p>
 
             <div class="gallery-toolbar">
                 <div class="gallery-filters" id="gallery-filters" role="group" aria-label="Filter gallery by category"></div>
-                <p class="gallery-count" id="gallery-count" aria-live="polite"></p>
+                <div class="gallery-toolbar-meta">
+                    <button class="gallery-back" id="gallery-back" type="button" hidden>
+                        <span aria-hidden="true">&#8592;</span>
+                        Back to Gallery
+                    </button>
+                    <p class="gallery-count" id="gallery-count" aria-live="polite"></p>
+                </div>
             </div>
 
-            <div class="gallery-grid" id="gallery-grid" aria-label="Guestland photo gallery" aria-busy="true"></div>
+            <h3 class="gallery-view-title" id="gallery-view-title">Browse by space</h3>
+            <div class="gallery-grid" id="gallery-grid" data-view="overview" role="region" aria-labelledby="gallery-view-title" aria-busy="true"></div>
             <noscript>
                 <p class="gallery-noscript">Please enable JavaScript to explore the complete Guestland gallery.</p>
             </noscript>
@@ -197,6 +204,7 @@
             </div>
         </div>
     </footer>
+    <script src="js/room-gallery-manifest.js" defer></script>
     <script src="js/gallery.js" defer></script>
     <script src="js/guest-gallery-manifest.js" defer></script>
     <script src="js/guest-gallery.js?v=4" defer></script>
