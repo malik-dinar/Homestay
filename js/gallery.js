@@ -1,460 +1,6 @@
+/* Gallery content is supplied by js/gallery-manifest.js. */
 (function () {
     'use strict';
-
-    var categoryLabelAliases = {
-        'room-deluxe-double-ac': 'Deluxe Double Room (AC)',
-        'room-superior-single-ac': 'Superior Single Room (AC)',
-        'room-cozy-single-non-ac': 'Cozy Single Room (Non-AC)',
-        exterior: 'Exterior',
-        bathrooms: 'Bathrooms',
-        'common-areas': 'Common Areas',
-        dining: 'Dining',
-        kitchen: 'Kitchen',
-        'outdoor-spaces': 'Outdoor Spaces',
-        views: 'Views & Surroundings',
-        details: 'Decor & Details'
-    };
-
-    var categoryPriority = [
-        'room-deluxe-double-ac',
-        'room-superior-single-ac',
-        'room-cozy-single-non-ac',
-        'exterior',
-        'bathrooms',
-        'common-areas',
-        'dining',
-        'kitchen',
-        'outdoor-spaces',
-        'views',
-        'details'
-    ];
-
-    var galleryImages = [
-        {
-            src: 'front view.jpeg',
-            category: 'exterior',
-            title: 'Welcome to Guestland',
-            alt: 'Daytime exterior of Guestland Homestay with white balconies, solar panels and patio greenery.',
-            width: 1024,
-            height: 1536
-        },
-        {
-            src: 'front night view.jpeg',
-            category: 'exterior',
-            title: 'Guestland at Dusk',
-            alt: 'Guestland Homestay multi-level facade and illuminated balconies at dusk.',
-            width: 1616,
-            height: 2560
-        },
-        {
-            src: 'front night view 4.jpeg',
-            category: 'exterior',
-            title: 'An Evening Welcome',
-            alt: 'Warmly lit entrance patio and balconies of Guestland Homestay at night.',
-            width: 1707,
-            height: 2560
-        },
-        {
-            src: 'single non ac room (4).jpg.jpeg',
-            category: 'rooms',
-            title: 'Teal Door Room',
-            alt: 'Bright guest room with white linens, red accents and a teal door.',
-            width: 2560,
-            height: 1707
-        },
-        {
-            src: 'single non ac room (3).jpg.jpeg',
-            category: 'rooms',
-            title: 'Guest Room Details',
-            alt: 'Guest room dressing desk, mirror and wooden wardrobe beside the bed.',
-            width: 2162,
-            height: 2560
-        },
-        {
-            src: 'DSC08455 (1).jpg.jpeg',
-            category: 'rooms',
-            title: 'Double Room',
-            alt: 'Double guest room with crisp white bedding, blue curtains and a ceiling fan.',
-            width: 1707,
-            height: 2560
-        },
-        {
-            src: 'DSC08440 (1).jpg.jpeg',
-            category: 'rooms',
-            title: 'Room Seating',
-            alt: 'Air-conditioned guest room seating area with wooden armchairs, mirror and blue curtains.',
-            width: 1707,
-            height: 2560
-        },
-        {
-            src: 'DSC08421 (1).jpg.jpeg',
-            category: 'rooms',
-            title: 'Bright Double Room',
-            alt: 'Spacious double guest room with white bedding, blue curtains, ceiling fan and wardrobe.',
-            width: 1707,
-            height: 2560
-        },
-        {
-            src: 'DSC08359 (1).jpg.jpeg',
-            category: 'rooms',
-            title: 'Dressing Corner',
-            alt: 'Guest room dressing desk with cane chair, mirror, water bottle and blue curtains.',
-            width: 1682,
-            height: 2560
-        },
-        {
-            src: 'DSC08302 (1).jpg.jpeg',
-            category: 'rooms',
-            title: 'Bedside Calm',
-            alt: 'Warm bedside lamp beside white pillows and a red accent cushion.',
-            width: 2560,
-            height: 1707
-        },
-        {
-            src: 'ChatGPT Image Jul 12, 2026, 09_25_20 PM.jpg',
-            category: 'rooms',
-            title: 'Classic Double Room',
-            alt: 'Bright double guest room with white linens, red accents, blue curtains and a teal door.',
-            width: 1024,
-            height: 1536
-        },
-        {
-            src: 'WhatsApp Image 2026-07-12 at 9.37.56 PM.jpeg',
-            category: 'bathrooms',
-            title: 'Guest Bathroom',
-            alt: 'Tiled guest bathroom with toilet, shower fittings and ventilation window.',
-            width: 1023,
-            height: 1536
-        },
-        {
-            src: 'WhatsApp Image 2026-07-12 at 9.29.46 PM.jpeg',
-            category: 'bathrooms',
-            title: 'Guest Vanity',
-            alt: 'Guest bathroom vanity with mirror, basin and complimentary toiletries.',
-            width: 1733,
-            height: 2560
-        },
-        {
-            src: 'toilet ac single room (3).jpg.jpeg',
-            category: 'bathrooms',
-            title: 'Ensuite Vanity',
-            alt: 'Marble-tiled guest bathroom vanity with round mirror, basin and toiletries.',
-            width: 1885,
-            height: 2560
-        },
-        {
-            src: 'toilet ac single room (1).jpg.jpeg',
-            category: 'bathrooms',
-            title: 'Rainfall Shower Ensuite',
-            alt: 'Marble-tiled ensuite bathroom with rainfall shower and toilet.',
-            width: 1707,
-            height: 2560
-        },
-        {
-            src: 'power room (2).jpg.jpeg',
-            category: 'bathrooms',
-            title: 'Powder Room',
-            alt: 'Powder room vanity with a stone basin, oval mirror and potted snake plant.',
-            width: 1707,
-            height: 2560
-        },
-        {
-            src: 'power room (1).jpg.jpeg',
-            category: 'bathrooms',
-            title: 'Stone Basin Detail',
-            alt: 'Close view of a stone basin and oval mirror against marble-effect powder room tiles.',
-            width: 1706,
-            height: 2560
-        },
-        {
-            src: 'IMG20230811001153.jpg.jpeg',
-            category: 'bathrooms',
-            title: 'Marble Guest Bathroom',
-            alt: 'Guest bathroom with black-and-white marble-effect tiles, toilet and shower fittings.',
-            width: 2560,
-            height: 2047
-        },
-        {
-            src: 'Reading corner.jpg.jpeg',
-            category: 'common-areas',
-            title: 'Reading Corner',
-            alt: 'Cozy reading corner with floor seating, flower cushions, books and framed artwork.',
-            width: 1707,
-            height: 2560
-        },
-        {
-            src: 'office space.jpg.jpeg',
-            category: 'common-areas',
-            title: 'Welcome Desk',
-            alt: 'Reception workspace with printer, desk accessories and a framed Guestland Homestay award.',
-            width: 2560,
-            height: 1707
-        },
-        {
-            src: 'DSC08410 (1).jpg.jpeg',
-            category: 'common-areas',
-            title: 'Quiet Sitting Nook',
-            alt: 'Intimate indoor sitting nook with an upholstered wooden sofa, coffee table and wall art.',
-            width: 2560,
-            height: 1707
-        },
-        {
-            src: 'communal lounge.jpg.jpeg',
-            category: 'common-areas',
-            title: 'Communal Lounge',
-            alt: 'Guest relaxing with a phone on the spacious brown sofa in the communal lounge.',
-            width: 2560,
-            height: 1707
-        },
-        {
-            src: 'communal lounge (3).jpg.jpeg',
-            category: 'common-areas',
-            title: 'Shared Lounge',
-            alt: 'Welcoming communal lounge with brown sectional sofa, reception desk and warm wall lights.',
-            width: 2560,
-            height: 1898
-        },
-        {
-            src: 'communal lounge (2).jpg.jpeg',
-            category: 'common-areas',
-            title: 'Conversation Corner',
-            alt: 'Brown sectional sofa and black coffee table in the warmly lit communal lounge.',
-            width: 1707,
-            height: 2560
-        },
-        {
-            src: 'communal lounge (1).jpg.jpeg',
-            category: 'common-areas',
-            title: 'Lounge Perspective',
-            alt: 'Low-angle view of the communal lounge with brown sofas, coffee table and ceiling fan.',
-            width: 1857,
-            height: 2560
-        },
-        {
-            src: 'asthetic reading area  (1).jpg',
-            category: 'common-areas',
-            title: 'Reading and Refreshment',
-            alt: 'Reading corner with flower cushions and books beside the marble powder-room vanity.',
-            width: 1706,
-            height: 2560
-        },
-        {
-            src: 'Dining area (3).jpg.jpeg',
-            category: 'dining',
-            title: 'Dining by the Kitchen',
-            alt: 'Set four-place dining table beneath patterned pendant lights beside the communal kitchen.',
-            width: 1707,
-            height: 2560
-        },
-        {
-            src: 'Dining area (1).jpg.jpeg',
-            category: 'dining',
-            title: 'Table Set for Four',
-            alt: 'Dining table set for four with dark plates, cutlery and a glass water carafe.',
-            width: 1707,
-            height: 2560
-        },
-        {
-            src: 'communal kitchen (4).jpg.jpeg',
-            category: 'kitchen',
-            title: 'Communal Kitchen',
-            alt: 'Fully equipped communal kitchen with teal cabinets, patterned tiles, stove, sink and microwave.',
-            width: 2560,
-            height: 1707
-        },
-        {
-            src: 'communal kitchen (3).jpg.jpeg',
-            category: 'kitchen',
-            title: 'Kitchen Essentials',
-            alt: 'Communal kitchen counter with microwave, kettle, mugs and tea-and-coffee canisters.',
-            width: 1706,
-            height: 2560
-        },
-        {
-            src: 'communal kitchen (2).jpg.jpeg',
-            category: 'kitchen',
-            title: 'Tea and Spice Station',
-            alt: 'Kitchen spice and tea station with decorative signs, jars and framed artwork.',
-            width: 1708,
-            height: 2560
-        },
-        {
-            src: 'communal kitchen (1).jpg.jpeg',
-            category: 'kitchen',
-            title: 'A Colorful Kitchen',
-            alt: 'Colorful communal kitchen spice racks, mugs and tea accessories.',
-            width: 2560,
-            height: 1707
-        },
-        {
-            src: 'plants.jpeg',
-            category: 'outdoor-spaces',
-            title: 'Patio Details',
-            alt: 'Miniature planters and figurines arranged on the patio table.',
-            width: 1707,
-            height: 2560
-        },
-        {
-            src: 'Patio.jpg.jpeg',
-            category: 'outdoor-spaces',
-            title: 'Garden Patio',
-            alt: 'Plant-filled patio with white chairs and a blue-and-white striped umbrella.',
-            width: 1529,
-            height: 2560
-        },
-        {
-            src: 'patio plants.jpeg',
-            category: 'outdoor-spaces',
-            title: 'Patio Table',
-            alt: 'White patio table and chairs decorated with tiny potted plants and figurines.',
-            width: 1707,
-            height: 2560
-        },
-        {
-            src: 'front night view 2.jpeg',
-            category: 'outdoor-spaces',
-            title: 'Plant-Filled Entrance',
-            alt: 'Illuminated Guestland Homestay entrance sign beside a tiered display of potted plants.',
-            width: 1680,
-            height: 2560
-        },
-        {
-            src: 'ChatGPT Image Jul 8, 2026, 12_00_56 AM.jpg',
-            category: 'outdoor-spaces',
-            title: 'Rooftop Terrace',
-            alt: 'Rooftop terrace with white seating, artificial grass and a large shade umbrella.',
-            width: 1537,
-            height: 1023
-        },
-        {
-            src: 'ChatGPT Image Jul 8, 2026, 12_00_40 AM.jpg',
-            category: 'outdoor-spaces',
-            title: 'Tea on the Terrace',
-            alt: 'Four guests sharing tea beneath the shade umbrella on the rooftop terrace.',
-            width: 1537,
-            height: 1023
-        },
-        {
-            src: 'ChatGPT Image Jul 7, 2026, 10_58_38 PM.jpg',
-            category: 'outdoor-spaces',
-            title: 'Open-Air Rooftop',
-            alt: 'Rooftop terrace seating under a large white umbrella with neighborhood and palm-tree views.',
-            width: 1537,
-            height: 1023
-        },
-        {
-            src: 'Balcony.jpg.jpeg',
-            category: 'outdoor-spaces',
-            title: 'Private Balcony',
-            alt: 'Private balcony with teal doors, red chair, small table and neighborhood view.',
-            width: 2560,
-            height: 1707
-        },
-        {
-            src: 'balcony (4).jpg.jpeg',
-            category: 'outdoor-spaces',
-            title: 'Balcony After Dark',
-            alt: 'Flower-trimmed private balcony with a red chair and small table at night.',
-            width: 1706,
-            height: 2560
-        },
-        {
-            src: 'balcony (3).jpg.jpeg',
-            category: 'outdoor-spaces',
-            title: 'A Sunny Reading Spot',
-            alt: 'Guest reading on a flower-lined private balcony in daylight.',
-            width: 1707,
-            height: 2560
-        },
-        {
-            src: 'balcony (2).jpg.jpeg',
-            category: 'outdoor-spaces',
-            title: 'Flowers on the Balcony',
-            alt: 'Guest reading beside colorful flower boxes on a sunny private balcony.',
-            width: 1707,
-            height: 2560
-        },
-        {
-            src: 'view from roof top.jpg.jpeg',
-            category: 'views',
-            title: 'Fort Kochi Rooftops',
-            alt: 'Rooftop view across Fort Kochi homes and coconut palms in warm evening light.',
-            width: 2560,
-            height: 1707
-        },
-        {
-            src: 'view from roof top evening.jpg.jpeg',
-            category: 'views',
-            title: 'Sunset from the Rooftop',
-            alt: 'Colorful sunset sky above the surrounding Fort Kochi rooftops and palms.',
-            width: 1920,
-            height: 2560
-        },
-        {
-            src: 'WhatsApp Image 2026-07-12 at 8.37.49 PM.jpeg',
-            category: 'details',
-            title: 'Guestland Accolades',
-            alt: 'Guestland Homestay award certificates and guest-photo collages displayed on a warm yellow wall.',
-            width: 1448,
-            height: 1086
-        },
-        {
-            src: 'DSC08465 (1).jpg.jpeg',
-            category: 'details',
-            title: 'Bedside Still Life',
-            alt: 'Bedside lamp, glass water bottle and sculptural white vase arranged on a glossy table.',
-            width: 1707,
-            height: 2560
-        },
-        {
-            src: 'Decor.jpg.jpeg',
-            category: 'details',
-            title: 'Relax and Unwind',
-            alt: 'Four warm-toned wall panels reading Relax, Soak, Unwind and Breathe.',
-            width: 2560,
-            height: 2000
-        },
-        {
-            src: 'Decor and awards (2).jpg.jpeg',
-            category: 'details',
-            title: 'World-Time Clock',
-            alt: 'Vintage world-time wall clock above Guestland Homestay award frames.',
-            width: 1707,
-            height: 2560
-        },
-        {
-            src: 'decor 4.jpg.jpeg',
-            category: 'details',
-            title: 'Botanical Corner',
-            alt: 'Framed botanical print and tall potted bamboo by a teal-trimmed window.',
-            width: 1829,
-            height: 2560
-        },
-        {
-            src: 'decor 3.jpg.jpeg',
-            category: 'details',
-            title: 'Lavender and Green',
-            alt: 'Framed leaf artwork and potted palm against a soft lavender wall.',
-            width: 1707,
-            height: 2560
-        },
-        {
-            src: 'decor (2).jpg.jpeg',
-            category: 'details',
-            title: 'Choose Happy',
-            alt: 'Choose Happy ornament, woven succulent planter and warm-toned framed artwork.',
-            width: 2560,
-            height: 1706
-        },
-        {
-            src: 'asthetic clock.jpg.jpeg',
-            category: 'details',
-            title: 'Vintage Clock',
-            alt: 'Vintage world-time wall clock above Guestland Homestay award frames.',
-            width: 1707,
-            height: 2560
-        }
-    ];
 
     var filterContainer = document.getElementById('gallery-filters');
     var galleryGrid = document.getElementById('gallery-grid');
@@ -470,15 +16,11 @@
     var activeCategory = 'all';
     var filterTimer = null;
     var filterSequence = 0;
-    var imageSources = {};
-    var categoryLookup = {};
+    var categoryLookup = Object.create(null);
+    var usedCategoryIds = Object.create(null);
     var allFilterButton = null;
     var lastCategoryTrigger = null;
     var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-    function naturalCompare(left, right) {
-        return left.localeCompare(right, undefined, { numeric: true, sensitivity: 'base' });
-    }
 
     function slugify(value) {
         return value
@@ -487,16 +29,44 @@
             .replace(/^-+|-+$/g, '');
     }
 
-    function formatRoomLabel(value) {
-        var label = value
-            .replace(/[_-]+/g, ' ')
+    function formatDisplayLabel(value, fallbackIndex) {
+        var normalized = String(value || '')
             .replace(/\s+/g, ' ')
-            .trim()
-            .replace(/\b\w/g, function (letter) { return letter.toUpperCase(); });
+            .trim();
 
-        return label
+        if (!normalized) {
+            return 'Collection ' + (fallbackIndex + 1);
+        }
+
+        return normalized
+            .toLowerCase()
+            .replace(/\b[a-z]/g, function (letter) {
+                return letter.toUpperCase();
+            })
             .replace(/\bAc\b/g, 'AC')
-            .replace(/\bNon AC\b/g, 'Non-AC');
+            .replace(/\bNon[-\s]+AC\b/g, 'Non-AC');
+    }
+
+    function createCategoryId(label) {
+        var baseId = slugify(label) || 'collection';
+
+        // Retain the room prefix used by the existing cover-image positioning rule.
+        if (/\broom\b/i.test(label)) {
+            baseId = 'room-' + baseId;
+        } else if (baseId === 'all') {
+            baseId = 'collection-all';
+        }
+
+        var categoryId = baseId;
+        var suffix = 2;
+
+        while (usedCategoryIds[categoryId]) {
+            categoryId = baseId + '-' + suffix;
+            suffix += 1;
+        }
+
+        usedCategoryIds[categoryId] = true;
+        return categoryId;
     }
 
     function removeImageExtensions(value) {
@@ -509,141 +79,137 @@
         return stem;
     }
 
-    function getRoomCategory(path) {
-        var relativePath = path.replace(/^images\/rooms\//i, '');
-        var pathParts = relativePath.split('/');
-        var fileName = pathParts.pop();
-        var categoryName;
+    function getPhotoDescriptor(path) {
+        var fileName = path.split('/').pop() || '';
 
-        if (pathParts.length) {
-            categoryName = pathParts[0];
-        } else {
-            categoryName = removeImageExtensions(fileName)
-                .replace(/\s*(?:\(\s*\d+\s*\)|[-_ ]+\d+)\s*$/, '');
+        try {
+            fileName = decodeURIComponent(fileName);
+        } catch (error) {
+            // Keep the original filename when it is not URI encoded.
         }
 
-        categoryName = categoryName.replace(/[_-]+/g, ' ').replace(/\s+/g, ' ').trim();
-        var normalizedName = categoryName.toLowerCase();
+        var descriptor = removeImageExtensions(fileName)
+            .replace(/[_-]+/g, ' ')
+            .replace(/\s*(?:\(\s*\d+\s*\)|\d+)\s*$/, '')
+            .replace(/\s+/g, ' ')
+            .trim();
 
-        if (/^deluxe double (?:ac room|room ac)$/.test(normalizedName)) {
-            return { id: 'room-deluxe-double-ac', label: categoryLabelAliases['room-deluxe-double-ac'] };
+        if (!descriptor || /^(?:chatgpt image|whatsapp image|dsc\d*|img\d*|hbd)(?:\b|$)/i.test(descriptor)) {
+            return '';
         }
 
-        if (/^(?:superior )?single (?:ac room|room ac)$/.test(normalizedName)) {
-            return { id: 'room-superior-single-ac', label: categoryLabelAliases['room-superior-single-ac'] };
-        }
-
-        if (/^(?:cozy )?single (?:non ac room|room non ac)$/.test(normalizedName)) {
-            return { id: 'room-cozy-single-non-ac', label: categoryLabelAliases['room-cozy-single-non-ac'] };
-        }
-
-        var categoryId = 'room-' + slugify(normalizedName || 'uncategorized');
-        var categoryLabel = formatRoomLabel(categoryName || 'Room');
-        categoryLabelAliases[categoryId] = categoryLabel;
-
-        return { id: categoryId, label: categoryLabel };
+        return formatDisplayLabel(descriptor, 0)
+            .replace(/\bAsthetic\b/g, 'Aesthetic');
     }
 
-    var roomPhotoPaths = Array.isArray(window.GuestlandRoomPhotos)
-        ? window.GuestlandRoomPhotos.slice().sort(naturalCompare)
-        : [];
+    function createPhotoAlt(path, categoryLabel, index, total) {
+        var descriptor = getPhotoDescriptor(path);
+        var position = 'Photo ' + (index + 1) + ' of ' + total + '.';
 
-    // The generated room collection is authoritative; legacy room records remain a no-manifest fallback.
-    if (roomPhotoPaths.length) {
-        galleryImages = galleryImages.filter(function (image) {
-            return image.category !== 'rooms';
-        });
+        if (descriptor && descriptor.toLowerCase() !== categoryLabel.toLowerCase()) {
+            return descriptor + ' at Guestland Homestay, part of the ' + categoryLabel + ' collection. ' + position;
+        }
+
+        return 'View of the ' + categoryLabel + ' at Guestland Homestay. ' + position;
     }
 
-    galleryImages.forEach(function (image, index) {
-        image.src = 'images/gallery/' + image.src;
-        image.sourceType = 'legacy';
-        image.sourceIndex = index;
-
-        if (image.category === 'rooms') {
-            image.category = /single\s+non\s+ac\s+room/i.test(image.src)
-                ? 'room-cozy-single-non-ac'
-                : 'room-deluxe-double-ac';
-        }
-    });
-
-    roomPhotoPaths.forEach(function (path, index) {
-        var roomCategory = getRoomCategory(path);
-
-        galleryImages.push({
-            src: path,
-            category: roomCategory.id,
-            alt: roomCategory.label + ' at Guestland Homestay.',
-            sourceType: 'room',
-            sourceIndex: index
-        });
-    });
-
-    galleryImages.forEach(function (image) {
-        if (!categoryLabelAliases[image.category]) {
-            categoryLabelAliases[image.category] = formatRoomLabel(image.category);
+    function getImagePath(imageEntry) {
+        if (typeof imageEntry === 'string') {
+            return imageEntry.trim();
         }
 
-        if (imageSources[image.src]) {
-            throw new Error('Gallery image listed more than once: ' + image.src);
+        if (imageEntry && typeof imageEntry.src === 'string') {
+            return imageEntry.src.trim();
         }
 
-        imageSources[image.src] = true;
+        return '';
+    }
 
-        if (!categoryLookup[image.category]) {
-            categoryLookup[image.category] = {
-                id: image.category,
-                label: categoryLabelAliases[image.category],
+    function buildCategories(collections) {
+        var builtCategories = [];
+
+        collections.forEach(function (collection, collectionIndex) {
+            if (!collection || !Array.isArray(collection.images)) {
+                return;
+            }
+
+            var sourceTitle = typeof collection.title === 'string' ? collection.title : '';
+            var label = formatDisplayLabel(sourceTitle, collectionIndex);
+            var category = {
+                id: createCategoryId(label),
+                label: label,
+                sourceTitle: sourceTitle,
                 images: []
             };
-        }
 
-        categoryLookup[image.category].images.push(image);
-    });
+            collection.images.forEach(function (imageEntry) {
+                var path = getImagePath(imageEntry);
 
-    var categories = Object.keys(categoryLookup).map(function (categoryId) {
-        var category = categoryLookup[categoryId];
+                if (!path) {
+                    return;
+                }
 
-        category.images.sort(function (left, right) {
-            if (left.sourceType !== right.sourceType) {
-                return left.sourceType === 'room' ? -1 : 1;
+                var image = {
+                    src: path,
+                    alt: imageEntry && typeof imageEntry.alt === 'string' && imageEntry.alt.trim()
+                        ? imageEntry.alt.trim()
+                        : ''
+                };
+
+                if (imageEntry && Number.isFinite(imageEntry.width) && Number.isFinite(imageEntry.height)) {
+                    image.width = imageEntry.width;
+                    image.height = imageEntry.height;
+                }
+
+                category.images.push(image);
+            });
+
+            if (!category.images.length) {
+                return;
             }
 
-            if (left.sourceType === 'room') {
-                return naturalCompare(left.src, right.src);
-            }
+            category.images.forEach(function (image, imageIndex) {
+                if (!image.alt) {
+                    image.alt = createPhotoAlt(image.src, category.label, imageIndex, category.images.length);
+                }
+            });
 
-            return left.sourceIndex - right.sourceIndex;
+            category.cover = category.images[0];
+            categoryLookup[category.id] = category;
+            builtCategories.push(category);
         });
 
-        category.cover = category.images[0];
+        return builtCategories;
+    }
 
-        category.images.forEach(function (image, index) {
-            if (image.sourceType === 'room') {
-                image.alt = 'View of the ' + category.label + ' at Guestland Homestay, photo ' + (index + 1) + ' of ' + category.images.length + '.';
-            }
-        });
+    function renderUnavailableMessage() {
+        var message = document.createElement('p');
 
-        return category;
-    }).sort(function (left, right) {
-        var leftPriority = categoryPriority.indexOf(left.id);
-        var rightPriority = categoryPriority.indexOf(right.id);
+        filterContainer.hidden = true;
+        galleryToolbar.hidden = true;
+        galleryBack.hidden = true;
+        galleryCount.textContent = '';
+        galleryViewTitle.textContent = 'Gallery currently unavailable';
 
-        leftPriority = leftPriority === -1
-            ? (left.id.indexOf('room-') === 0 ? 2.5 : categoryPriority.length)
-            : leftPriority;
-        rightPriority = rightPriority === -1
-            ? (right.id.indexOf('room-') === 0 ? 2.5 : categoryPriority.length)
-            : rightPriority;
+        message.className = 'gallery-noscript';
+        message.setAttribute('role', 'status');
+        message.textContent = 'Our gallery could not be loaded right now. Please try again shortly.';
+        message.style.gridColumn = '1 / -1';
 
-        return leftPriority === rightPriority
-            ? naturalCompare(left.label, right.label)
-            : leftPriority - rightPriority;
-    });
+        galleryGrid.appendChild(message);
+        galleryGrid.classList.add('is-ready');
+        galleryGrid.setAttribute('aria-busy', 'false');
+    }
 
-    categories.forEach(function (category) {
-        categoryLookup[category.id] = category;
-    });
+    var manifestCollections = Array.isArray(window.GuestlandGalleryCollections)
+        ? window.GuestlandGalleryCollections
+        : [];
+    var categories = buildCategories(manifestCollections);
+
+    if (!categories.length) {
+        renderUnavailableMessage();
+        return;
+    }
 
     function createFilterButton(category, label) {
         var button = document.createElement('button');
