@@ -3205,6 +3205,37 @@ body.nav-open::before {
         gap: 16px;
     }
 
+    /* Collection covers stay uniform, while opened collections preserve each
+       photo's full composition on phones and tablets. */
+    .gallery-grid[data-view="category"] {
+        grid-template-columns: minmax(0, 1fr);
+        max-width: 620px;
+        margin-inline: auto;
+        gap: 18px;
+    }
+
+    .gallery-grid[data-view="category"] .gallery-card {
+        aspect-ratio: auto;
+    }
+
+    .gallery-grid[data-view="category"] .gallery-card-media {
+        height: auto;
+    }
+
+    .gallery-grid[data-view="category"] .gallery-card img,
+    .gallery-grid[data-view="category"] .gallery-card:hover img {
+        display: block;
+        height: auto;
+        object-fit: contain;
+        filter: none;
+        transform: none;
+    }
+
+    .gallery-grid.is-ready[data-view="category"] .gallery-card:hover {
+        box-shadow: 0 12px 34px rgba(74, 52, 70, 0.12);
+        transform: none;
+    }
+
     .welcome-grid {
         grid-template-columns: 1fr;
         gap: 60px;
