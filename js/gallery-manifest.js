@@ -97,7 +97,13 @@ window.GuestlandGalleryCollections = [
             'images/galleryy/Deluxe Double ac  room/Deluxe Double ac  room 4.jpeg',
             'images/galleryy/Deluxe Double ac  room/Deluxe Double ac  room 5.jpeg',
             'images/galleryy/Deluxe Double ac  room/Deluxe Double ac  room 6.jpeg',
-            'images/galleryy/Deluxe Double ac  room/Deluxe Double ac  room 7.jpeg'
+            'images/galleryy/Deluxe Double ac  room/Deluxe Double ac  room 7.jpeg',
+            {
+                src: 'images/galleryy/Deluxe Double ac  room/IMG20230811001153.jpg.jpeg',
+                alt: 'Private bathroom in the Deluxe Double AC Room at Guestland Homestay',
+                width: 2560,
+                height: 2047
+            }
         ]
     },
     {
@@ -107,7 +113,13 @@ window.GuestlandGalleryCollections = [
             'images/galleryy/Single ac room/Single ac room 2.jpeg',
             'images/galleryy/Single ac room/Single ac room 3.jpeg',
             'images/galleryy/Single ac room/Single ac room 4.jpeg',
-            'images/galleryy/Single ac room/Single ac room 5.jpeg'
+            'images/galleryy/Single ac room/Single ac room 5.jpeg',
+            {
+                src: 'images/galleryy/Single ac room/photo_2026-07-25_16-42-35.jpg',
+                alt: 'Private bathroom in the Single AC Room at Guestland Homestay',
+                width: 853,
+                height: 1280
+            }
         ]
     },
     {
@@ -117,7 +129,13 @@ window.GuestlandGalleryCollections = [
             'images/galleryy/Single non ac room/Single non ac room 2.jpeg',
             'images/galleryy/Single non ac room/Single non ac room 3.jpeg',
             'images/galleryy/Single non ac room/Single non ac room 4.jpeg',
-            'images/galleryy/Single non ac room/Single non ac room 5.jpeg'
+            'images/galleryy/Single non ac room/Single non ac room 5.jpeg',
+            {
+                src: 'images/galleryy/Single non ac room/WhatsApp Image 2026-07-24 at 10.15.53 AM.jpeg',
+                alt: 'Private bathroom in the Single Non-AC Room at Guestland Homestay',
+                width: 1023,
+                height: 1536
+            }
         ]
     }
 ];

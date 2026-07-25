@@ -1545,6 +1545,37 @@ body.nav-open::before {
     object-position: center 60%;
 }
 
+/* Opened collections keep every photo's full composition. Multi-column
+   layout fills desktop space naturally without forcing mixed aspect ratios
+   into cropped tiles. */
+@media (min-width: 993px) {
+    .gallery-grid[data-view="category"] {
+        display: block;
+        column-count: 3;
+        column-gap: 20px;
+    }
+
+    .gallery-grid[data-view="category"] .gallery-card {
+        width: 100%;
+        aspect-ratio: auto;
+        margin-bottom: 20px;
+        break-inside: avoid;
+    }
+
+    .gallery-grid[data-view="category"] .gallery-card-media {
+        height: auto;
+    }
+
+    .gallery-grid[data-view="category"] .gallery-card img,
+    .gallery-grid[data-view="category"] .gallery-card:hover img {
+        display: block;
+        height: auto;
+        object-fit: contain;
+        filter: none;
+        transform: none;
+    }
+}
+
 .gallery-category-action {
     position: absolute;
     inset: 0;
@@ -3459,6 +3490,11 @@ body.nav-open::before {
     .footer h4::after {
         left: 50%;
         transform: translateX(-50%);
+    }
+
+    .footer-contact p:first-of-type {
+        align-items: flex-start;
+        text-align: left;
     }
     
     .footer-bottom {
