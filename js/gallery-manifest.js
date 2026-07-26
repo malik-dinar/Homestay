@@ -44,7 +44,6 @@ window.GuestlandGalleryCollections = [
             'images/galleryy/communal lounge/communal lounge.jpg.jpeg',
             'images/galleryy/communal lounge/Decor and awards (2).jpg.jpeg',
             'images/galleryy/communal lounge/Decor.jpg.jpeg',
-            'images/galleryy/communal lounge/power room (1).jpg.jpeg',
             'images/galleryy/communal lounge/power room (2).jpg.jpeg',
             'images/galleryy/communal lounge/WhatsApp Image 2026-07-12 at 8.37.49 PM.jpeg'
         ]
@@ -95,7 +94,6 @@ window.GuestlandGalleryCollections = [
             'images/galleryy/Deluxe Double ac  room/Deluxe Double ac  room 2.jpeg',
             'images/galleryy/Deluxe Double ac  room/Deluxe Double ac  room 3.jpeg',
             'images/galleryy/Deluxe Double ac  room/Deluxe Double ac  room 4.jpeg',
-            'images/galleryy/Deluxe Double ac  room/Deluxe Double ac  room 5.jpeg',
             'images/galleryy/Deluxe Double ac  room/Deluxe Double ac  room 6.jpeg',
             'images/galleryy/Deluxe Double ac  room/Deluxe Double ac  room 7.jpeg',
             {

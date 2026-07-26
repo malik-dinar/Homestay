@@ -755,6 +755,16 @@ body.nav-open::before {
     object-position: center 24%;
 }
 
+@media (min-width: 769px) {
+    .page-header .gallery-image-bg img {
+        transform: scale(1.08) translate(3.5%, -0.5%);
+    }
+
+    .gallery-page-header .page-header-content {
+        transform: translateX(-2.5vw);
+    }
+}
+
 .page-header .hero-overlay {
     background: linear-gradient(135deg, 
         rgba(64, 40, 58, 0.55) 0%,
