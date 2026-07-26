@@ -23,7 +23,7 @@
     var autoPlayTimer = null;
     var programmaticScrollTimer = null;
     var scrollFrame = null;
-    var autoPlayDelay = 3000;
+    var autoPlayDelay = 2000;
     var reduceMotionQuery = window.matchMedia
         ? window.matchMedia('(prefers-reduced-motion: reduce)')
         : { matches: false };

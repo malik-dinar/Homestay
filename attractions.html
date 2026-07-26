@@ -260,6 +260,22 @@
                         <h2>Kerala Folklore Museum</h2>
                         <p>Kerala Folklore Museum, established in 2009, is one of Kerala&#39;s most remarkable cultural museums, dedicated to preserving and showcasing the state&#39;s rich artistic and folk traditions. Although located in Thevara, Kochi (about 10 km from Fort Kochi), it is a popular destination for visitors exploring the city&#39;s heritage. The museum houses an impressive collection of over 5,000 artifacts, including traditional temple sculptures, ritual objects, musical instruments, Kathakali masks, ancient jewelry, weapons, wooden carvings, and antiques collected from across Kerala. Its striking architecture is a blend of Malabar, Cochin, and Travancore styles, built using reclaimed materials from centuries-old heritage structures. Today, the Kerala Folklore Museum serves as an important cultural institution, preserving Kerala&#39;s diverse folk traditions and offering visitors an immersive experience of the state&#39;s art, history, and craftsmanship.</p><button type="button" class="attraction-read-more" aria-expanded="false">Read More</button></div></article>
             </div><div class="attractions-cta"><a href="contact.html" class="btn btn-primary">Plan Your Stay</a></div></div></main>
+    <dialog class="attraction-modal" id="attraction-modal" aria-label="Place details" aria-labelledby="attraction-modal-title">
+        <button type="button" class="attraction-modal-close" aria-label="Close place details">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M6 6l12 12M18 6L6 18"></path>
+            </svg>
+        </button>
+        <div class="attraction-modal-visual">
+            <img class="attraction-modal-image" alt="">
+        </div>
+        <div class="attraction-modal-content" tabindex="0" aria-label="Place information">
+            <span class="attraction-modal-eyebrow">Around Fort Kochi</span>
+            <h2 id="attraction-modal-title"></h2>
+            <div class="attraction-modal-divider" aria-hidden="true"></div>
+            <div class="attraction-modal-description"></div>
+        </div>
+    </dialog>
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
@@ -304,7 +320,7 @@
                 </div>
                 <div class="footer-contact">
                     <h4>Contact Us</h4>
-                    <p><span>📍</span> 1/1519 -2, Chirattapalam Rd, behind Dr Abraham Dental Clinic, Amaravathy, Fort Kochi, Kochi, Kerala 682001</p>
+                    <p><span>📍</span> Guestland Home Stay - 1/1519 -2, Chirattapalam Rd, behind Dr Abraham Dental Clinic, Amaravathy, Fort Kochi, Kochi, Kerala 682001</p>
                     <p><span>📞</span> +91 95447 75557 <br> +91 88919 12877</p>
                     <p><span>✉️</span> guestlandkovilhomes@gmail.com</p>
                 </div>
@@ -318,15 +334,6 @@
             </div>
         </div>
     </footer>
-    <script id="attractions-read-more-script">
-        document.querySelectorAll('.attraction-read-more').forEach(function (button) {
-            button.addEventListener('click', function () {
-                var card = button.closest('.attraction-card');
-                var expanded = card.classList.toggle('is-expanded');
-                button.setAttribute('aria-expanded', expanded ? 'true' : 'false');
-                button.textContent = expanded ? 'Show Less' : 'Read More';
-            });
-        });
-    </script><script src="js/navigation.js" defer></script></body></html>
+    <script src="js/attractions-modal.js" defer></script><script src="js/navigation.js" defer></script></body></html>
 
 
