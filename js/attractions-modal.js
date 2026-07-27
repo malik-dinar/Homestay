@@ -9,7 +9,6 @@
     }
 
     var closeButton = modal.querySelector('.attraction-modal-close');
-    var modalImageBackdrop = modal.querySelector('.attraction-modal-image-backdrop');
     var modalImage = modal.querySelector('.attraction-modal-image');
     var modalTitle = modal.querySelector('#attraction-modal-title');
     var modalContent = modal.querySelector('.attraction-modal-content');
@@ -61,17 +60,9 @@
         var sourceContent = card.querySelector('.attraction-card-content');
         var sourceTitle = sourceContent.querySelector('h2');
         var placeName = sourceTitle.textContent.trim();
-        var modalImageSource = sourceImage.getAttribute('data-modal-src') ||
-            sourceImage.currentSrc ||
-            sourceImage.getAttribute('src');
 
-        modalImage.src = modalImageSource;
+        modalImage.src = sourceImage.getAttribute('src');
         modalImage.alt = sourceImage.alt;
-
-        if (modalImageBackdrop) {
-            modalImageBackdrop.src = modalImageSource;
-        }
-
         modalTitle.textContent = placeName;
         modal.setAttribute('aria-label', placeName + ' details');
         modalDescription.replaceChildren();
