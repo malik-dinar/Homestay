@@ -757,7 +757,8 @@ body.nav-open::before {
 
 @media (min-width: 769px) {
     .page-header .gallery-image-bg img {
-        transform: scale(1.08) translate(3.5%, -0.5%);
+        transform: scale(1.12) translateY(-0.5%);
+        transform-origin: left center;
     }
 
     .gallery-page-header .page-header-content {
